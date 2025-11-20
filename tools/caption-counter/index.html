@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Caption Counter</title>
+</head>
+<body>
+  <h1>Caption Counter</h1>
+  <textarea id="text" rows="6" style="width:100%;"></textarea>
+  <p id="count">0 characters</p>
+
+<script>
+const box = document.getElementById('text');
+const count = document.getElementById('count');
+
+box.addEventListener('input', () => {
+  count.textContent = [...box.value].length + " characters";
+});
+</script>
+</body>
+</html>
