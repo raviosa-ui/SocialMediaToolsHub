@@ -3,199 +3,251 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SocialMediaToolsHub — Free creator tools</title>
-  <meta name="description" content="Free lightweight tools for creators — caption counter, emoji adder, hashtag cleaner, line break generator and more." />
+  <title>SocialMediaToolsKit — Instagram Line Break Generator & Creator Tools</title>
+  <meta name="description" content="Fix Instagram line breaks instantly using invisible space. Includes free tools for creators." />
+  <meta name="theme-color" content="#0f172a" />
+
   <style>
     :root{
-      --accent1:#4f46e5; --accent2:#06b6d4; --muted:#6b7280;
-      --max:1100px; --radius:12px; --gap:14px;
-      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--accent1),#7c3aed 60%,#a78bfa 100%);
-      color:#061026;
+      --bg:#0f172a;
+      --card:#1e293b;
+      --text:#f8fafc;
+      --muted:#94a3b8;
+      --border:#334155;
+      --accent-from:#38bdf8;
+      --accent-to:#818cf8;
+      --radius-lg:24px;
+      --radius-md:16px;
+      --gap:14px;
+      --transition:260ms cubic-bezier(.2,.9,.3,1);
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
       -webkit-font-smoothing:antialiased;
     }
-    .site{max-width:var(--max);margin:0 auto;padding:18px}
-    header{display:flex;align-items:center;justify-content:space-between;color:white;padding:6px 0}
-    .brand{font-weight:700;font-size:18px}
-    nav a{color:rgba(255,255,255,0.95);text-decoration:none;margin-left:14px;font-size:14px}
-
-    /* Compact hero */
-    .hero{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;padding:18px 0}
-    .hero h1{font-size:34px;margin:0;color:white;line-height:1.05}
-    .hero p{margin:0;color:rgba(255,255,255,0.92);max-width:900px;font-size:15px}
-    /* small divider */
-    .divider{height:1px;background:rgba(255,255,255,0.06);margin-top:10px;border-radius:2px}
-
-    /* Cards grid */
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:18px}
-    .card{background:white;padding:14px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(2,6,23,0.08);min-height:110px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer}
-    .card h3{margin:0;font-size:16px}
-    .card p{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.35}
-    .card a{margin-top:12px;color:var(--accent1);text-decoration:none;font-weight:600;font-size:13px;opacity:0.95}
-
-    footer{margin-top:24px;color:rgba(255,255,255,0.9);font-size:13px;text-align:center;padding-bottom:10px}
-
-    @media(max-width:980px){
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .hero h1{font-size:30px}
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.45;
+      padding:20px;
     }
-    @media(max-width:640px){
-      .site{padding:12px}
-      .hero h1{font-size:24px}
-      .cards{grid-template-columns:1fr;gap:12px}
-      header{padding:8px 0}
+    a{text-decoration:none;color:inherit}
+    .container{max-width:1120px;margin:0 auto}
+
+    /* HEADER */
+    header.header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:10px 6px;
+    }
+    .brand{
+      display:flex;gap:10px;font-weight:600;font-size:18px;
+      white-space:nowrap;
+    }
+    .brand .logo-text{
+      background:linear-gradient(90deg,var(--accent-from),var(--accent-to));
+      -webkit-background-clip:text;
+      color:transparent;
+    }
+    nav.topnav{
+      display:flex;gap:10px;font-size:14px;flex-wrap:wrap;
+    }
+    nav.topnav a{
+      padding:8px 10px;border-radius:10px;color:var(--muted);
+      transition:var(--transition);
+    }
+    nav.topnav a:hover{color:var(--text);background:rgba(255,255,255,0.02)}
+
+    /* HERO */
+    .hero{
+      background:var(--card);
+      border-radius:var(--radius-lg);
+      padding:20px;
+      margin-top:16px;
+    }
+    .hero-inner{
+      display:flex;flex-direction:column;text-align:center;gap:18px;
+    }
+    .hero h1{margin:0;font-size:20px}
+    .hero p.lead{
+      color:var(--muted);margin:10px 0 18px;font-size:15px;
+    }
+
+    .cta-wrap{display:flex;flex-direction:column;gap:12px}
+
+    .btn-cta{
+      padding:14px 18px;border-radius:12px;border:0;cursor:pointer;
+      font-weight:600;font-size:15px;
+      background:linear-gradient(90deg,var(--accent-from),var(--accent-to));
+      color:#06121f;
+      box-shadow:0 6px 18px rgba(8,12,30,0.6);
+      transition:transform .18s,box-shadow .18s;
+    }
+    .btn-cta:hover{
+      transform:translateY(-6px);
+      box-shadow:0 14px 40px rgba(8,12,30,0.7);
+    }
+    .copy-status{
+      font-size:13px;color:var(--muted);height:18px;
+      transition:opacity .2s,transform .2s;
+    }
+    .copy-status.show{color:var(--accent-from);opacity:1;transform:translateY(0)}
+    .copy-status.hide{opacity:0;transform:translateY(-6px)}
+
+    /* TOOLS GRID */
+    .tools{margin-top:20px}
+    .tools h2{font-size:16px;margin:0 0 12px}
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:12px;
+    }
+    .card{
+      display:flex;gap:12px;padding:14px;
+      border-radius:var(--radius-md);
+      background:rgba(255,255,255,0.02);
+      border:1px solid var(--border);
+      transition:var(--transition);
+    }
+    .card:hover{
+      transform:translateY(-6px);
+      border-color:var(--accent-from);
+      background:rgba(255,255,255,0.03);
+    }
+    .emoji{
+      font-size:28px;width:44px;height:44px;
+      display:grid;place-items:center;
+      background:rgba(255,255,255,0.05);
+      border-radius:10px;
+    }
+    .card h3{margin:0 0 6px;font-size:15px}
+    .card p{margin:0;color:var(--muted);font-size:13px}
+
+    /* ARTICLE */
+    .content-area{
+      max-width:800px;margin:22px auto 0;color:var(--muted);
+    }
+    .content-area h3{color:var(--text);margin:14px 0 6px;font-size:15px}
+    .content-area p{font-size:14px;line-height:1.6}
+    .faq dt{font-weight:700;color:var(--text);margin-top:12px}
+    .faq dd{margin:4px 0 0;color:var(--muted);font-size:13px}
+
+    /* FOOTER */
+    footer{text-align:center;margin:36px 0;color:var(--muted);font-size:13px}
+
+    @media(min-width:640px){
+      .hero-inner{flex-direction:row;text-align:left;align-items:center}
+    }
+    @media(min-width:768px){
+      .grid{grid-template-columns:repeat(4,1fr)}
     }
   </style>
 </head>
 <body>
-  <div class="site">
-    <header>
-      <div class="brand">SocialMediaToolsHub</div>
-      <nav>
-        <a href="/tools/">All Tools</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="/contact.html">Contact</a>
-      </nav>
-    </header>
 
-    <section class="hero" aria-labelledby="hero-title">
-      <h1 id="hero-title">Welcome Creator!</h1>
-      <p>Fast, free tools for Instagram creators — caption counters, emoji adder, hashtag cleaner, line break generator and more. Tap any block to open its tool page.</p>
-      <div class="divider" style="width:80%;"></div>
-    </section>
+<div class="container">
 
-    <section class="cards" aria-label="Tools list">
-      <div class="card">
-        <div>
-          <h3>Caption Counter</h3>
-          <p>Live character & emoji-aware counter for Instagram captions (2200 char limit).</p>
-        </div>
-        <a href="/tools/caption-counter/">Open tool →</a>
+  <!-- HEADER -->
+  <header class="header">
+    <div class="brand">
+      <span>⚡</span><span class="logo-text">SocialMediaToolsKit</span>
+    </div>
+    <nav class="topnav">
+      <a href="#about">About</a>
+      <a href="#requests">Requests</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Instagram Line Break Generator &amp; Creator Tools</h1>
+        <p class="lead">Stop Instagram from ruining your captions. Copy our invisible space to fix line breaks instantly.</p>
       </div>
 
-      <div class="card">
-        <div>
-          <h3>Emoji Adder</h3>
-          <p>Auto-suggest emojis by context or pick from a searchable emoji panel.</p>
-        </div>
-        <a href="/tools/emoji-adder/">Open tool →</a>
+      <div class="cta-wrap">
+        <textarea id="invisible-space" style="position:absolute;left:-9999px;">⠀</textarea>
+
+        <button id="copy-btn" class="btn-cta">Copy Invisible Space ✂️</button>
+        <div id="copy-status" class="copy-status hide"></div>
       </div>
+    </div>
+  </section>
 
-      <div class="card">
-        <div>
-          <h3>Hashtag Cleaner</h3>
-          <p>Remove duplicates, normalize hashtags and prepare Reels-ready tag sets.</p>
-        </div>
-        <a href="/tools/hashtag-cleaner/">Open tool →</a>
-      </div>
+  <!-- TOOLS GRID -->
+  <section class="tools">
+    <h2>More Social Media Creator Tools</h2>
 
-      <div class="card">
-        <div>
-          <h3>Line Break Generator</h3>
-          <p>Preserve blank lines and spacing for Instagram/Reels captions.</p>
-        </div>
-        <a href="/tools/line-break-generator/">Open tool →</a>
-      </div>
+    <div class="grid">
+      <a class="card" href="money-calc.html">
+        <div class="emoji">💰</div>
+        <div><h3>TikTok Money Calc</h3><p>Estimate your earning potential.</p></div>
+      </a>
+      <a class="card" href="bio-font.html">
+        <div class="emoji">A𝐚</div>
+        <div><h3>Bio Font Generator</h3><p>Create stylish fancy fonts.</p></div>
+      </a>
+      <a class="card" href="engagement.html">
+        <div class="emoji">📈</div>
+        <div><h3>Engagement Checker</h3><p>Check engagement rate instantly.</p></div>
+      </a>
+      <a class="card" href="randomizer.html">
+        <div class="emoji">🎲</div>
+        <div><h3>Content Idea Generator</h3><p>Fresh ideas for creators.</p></div>
+      </a>
+    </div>
+  </section>
 
-      <div class="card">
-        <div>
-          <h3>Case Converter</h3>
-          <p>Uppercase, lowercase, title case — convert instantly for captions and bios.</p>
-        </div>
-        <a href="/tools/case-converter/">Open tool →</a>
-      </div>
+  <!-- ARTICLE / HELP CONTENT -->
+  <article class="content-area">
+    <h3>Why do you need an Invisible Space?</h3>
+    <p>Instagram, TikTok, and Facebook often remove normal line breaks. Our invisible Unicode character (U+2800) forces a clean line break.</p>
 
-      <div class="card">
-        <div>
-          <h3>Bio Character Checker</h3>
-          <p>Check Instagram bio length (150 char) and preview your bio text.</p>
-        </div>
-        <a href="/tools/bio-checker/">Open tool →</a>
-      </div>
+    <h3>More Free Tools for Social Media Growth</h3>
+    <p>We offer utilities like TikTok Money Calculator, Bio Font Generator, and Engagement Rate Checkers.</p>
 
-      <div class="card">
-        <div>
-          <h3>Stylish Text</h3>
-          <p>Generate copyable stylish fonts for Instagram bios and captions.</p>
-        </div>
-        <a href="/tools/stylish-text/">Open tool →</a>
-      </div>
+    <h3>Frequently Asked Questions</h3>
+    <dl class="faq">
+      <dt>How do I add spaces in my Instagram bio?</dt>
+      <dd>Normal spaces often disappear. Use the invisible space above.</dd>
 
-      <div class="card">
-        <div>
-          <h3>Hashtag Recommender</h3>
-          <p>Get 10–20 related hashtags from a single keyword.</p>
-        </div>
-        <a href="/tools/hashtag-recommender/">Open tool →</a>
-      </div>
+      <dt>Is this tool safe?</dt>
+      <dd>Yes. Everything runs inside your browser. No data collected.</dd>
+    </dl>
+  </article>
 
-      <div class="card">
-        <div>
-          <h3>Copy & Download</h3>
-          <p>Save captions as .txt or copy to clipboard with one click.</p>
-        </div>
-        <a href="/tools/copy-download/">Open tool →</a>
-      </div>
+  <!-- FOOTER -->
+  <footer>© 2025 SocialMediaToolsKit. Built for speed.</footer>
 
-      <div class="card">
-        <div>
-          <h3>Text to Hashtags</h3>
-          <p>Convert sentences into clean hashtag lists automatically.</p>
-        </div>
-        <a href="/tools/text-to-hashtags/">Open tool →</a>
-      </div>
+</div>
 
-      <div class="card">
-        <div>
-          <h3>Link Cleaner</h3>
-          <p>Strip UTM and tracking params to create clean shareable links.</p>
-        </div>
-        <a href="/tools/link-cleaner/">Open tool →</a>
-      </div>
+<!-- JS -->
+<script>
+  (function(){
+    const btn=document.getElementById('copy-btn');
+    const status=document.getElementById('copy-status');
+    const hidden=document.getElementById('invisible-space');
 
-      <div class="card">
-        <div>
-          <h3>Caption Scorer</h3>
-          <p>Analyze and score your caption for readability and engagement.</p>
-        </div>
-        <a href="/tools/caption-scorer/">Open tool →</a>
-      </div>
-    </section>
+    function show(msg, ok){
+      status.textContent=msg;
+      status.classList.remove('hide');
+      status.classList.add('show');
+      status.style.color= ok ? '#38bdf8' : 'var(--muted)';
+      clearTimeout(status._t);
+      status._t=setTimeout(()=>{status.classList.replace('show','hide')},1600);
+    }
 
-    <footer>
-      © SocialMediaToolsHub — built for creators • <a href="/privacy.html" style="color:rgba(255,255,255,0.95);text-decoration:underline">Privacy</a>
-      <!-- Local mockup file (not shown on page): /mnt/data/A_2D_digital_mockup_of_a_website_named_%22SocialMedi.png -->
-      <div style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.88)"><a href="/mnt/data/A_2D_digital_mockup_of_a_website_named_%22SocialMedi.png" style="color:rgba(255,255,255,0.9);text-decoration:none">Download mockup</a></div>
-    </footer>
-  </div>
+    btn.onclick=function(){
+      const char=hidden.value || '⠀';
+      navigator.clipboard.writeText(char).then(
+        ()=>show('Copied!',true),
+        ()=>show('Could not copy',false)
+      );
+    };
+  })();
+</script>
 
-  <script>
-    // make entire card clickable and add prefetch on hover
-    document.querySelectorAll('.card').forEach(card=>{
-      const link = card.querySelector('a');
-      if(link){
-        card.addEventListener('click', (e)=>{
-          // ignore clicks on nested interactive elements if any
-          const tag = e.target.tagName.toLowerCase();
-          if(tag === 'a' || tag === 'button' || tag === 'input') return;
-          window.location = link.href;
-        });
-        card.addEventListener('mouseenter', ()=>{
-          const url = link.getAttribute('href');
-          if(url){
-            const l = document.createElement('link');
-            l.rel='prefetch';
-            l.href = url;
-            document.head.appendChild(l);
-          }
-        });
-      }
-    });
-  </script>
 </body>
 </html>
